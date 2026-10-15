@@ -13,6 +13,7 @@ enable_testing()
 
 add_library(minitcp_net
     src/net/checksum.cpp
+    src/net/ipv4.cpp
 )
 
 target_compile_features(minitcp_net PUBLIC cxx_std_20)
@@ -42,3 +43,15 @@ target_link_libraries(minitcp_tests PRIVATE
 )
 
 add_test(NAME minitcp_tests COMMAND minitcp_tests)
+
+add_executable(ipv4_tests
+    tests/test_ipv4.cpp
+)
+
+target_compile_features(ipv4_tests PRIVATE cxx_std_20)
+
+target_link_libraries(ipv4_tests PRIVATE
+    minitcp_net
+)
+
+add_test(NAME ipv4_tests COMMAND ipv4_tests)
